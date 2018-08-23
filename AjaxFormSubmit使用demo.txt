@@ -1,0 +1,16 @@
+官网：http://jquery.malsup.com/form/#download  下载地址
+ 
+ 
+ $("#form1").ajaxSubmit({
+                success: function (str) {
+                                           
+                },
+                error: function (error) { alert(error); },
+                url: '/GoodsManager/Goods/ImageHandler.ashx', /*设置post提交到的页面*/
+                type: "post", /*设置表单以post方法提交*/
+                dataType: "json" /*设置返回值类型为文本*/
+            });
+
+actionFilter
+
+/Home/Index
