@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript">
+	function queryMobile(){
+		//创建XMLHttpRequest对象
+		var xhr = new XMLHttpRequest();
+		//打开连接
+		xhr.open("post","http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx",true);
+		//设置数据类型
+		xhr.setRequestHeader("content-type","text/xml;charset=utf-8");
+		//设置回调函数
+		xhr.onreadystatechange=function(){
+			//判断是否发送成功和判断服务端是否响应成功
+			if(4 == xhr.readyState && 200 == xhr.status){
+				alert("成功");
+				alert(xhr.responseText);
+			}
+		}
+		//组织SOAP协议数据
+		var soapXML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+		+"<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
+			+"<soap:Body>"
+		    +"<getMobileCodeInfo xmlns=\"http://WebXml.com.cn/\">"
+		    	+"<mobileCode>"+document.getElementById("phoneNum").value+"</mobileCode>"
+		      +"<userID></userID>"
+		    +"</getMobileCodeInfo>"
+		  +"</soap:Body>"
+		+"</soap:Envelope>";
+		alert(soapXML);
+		//发送数据
+		xhr.send(soapXML);
+	}
+  </script>
+ </head>
+ <body>
+  手机号查询：<input type="text" id="phoneNum"/> <input type="button" value="查询" onclick="javascript:queryMobile();"/>
+ </body>
+</html>
